@@ -8,6 +8,15 @@ export class User {
   @Column({ type: 'varchar' })
   name: string;
 
+  @Column({ type: 'varchar' })
+  login: string;
+
+  @Column({ type: 'varchar' })
+  password: string;
+
+  @Column({ type: 'int' })
+  role: number;
+
   @Column({ type: 'boolean', default: false })
   isOnline: boolean;
 

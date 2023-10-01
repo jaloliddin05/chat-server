@@ -62,7 +62,7 @@ export class UserController {
     return this.userService.getOne(id);
   }
 
-  @Post('/login')
+  @Post('/user')
   @ApiOperation({ summary: 'Method: creates new user' })
   @ApiCreatedResponse({
     description: 'The user was created successfully',

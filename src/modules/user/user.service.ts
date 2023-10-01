@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 
-
 import { User } from './user.entity';
 import { CreateUserDto, UpdateUserDto } from './dto';
 
@@ -14,7 +13,7 @@ export class UserService {
   ) {}
 
   async getAll() {
-    return this.userRepository.find()
+    return this.userRepository.find();
   }
 
   async getOne(id: string) {
@@ -38,12 +37,21 @@ export class UserService {
     return data;
   }
 
-  async getUserByName(name:string){
-    const data = await this.userRepository.findOne({where:{name}})
-    if(!data){
-      return false
+  async getByLogin(login: string) {
+    const data = await this.userRepository.findOne({
+      where: {
+        login,
+      },
+    });
+    return data;
+  }
+
+  async getUserByName(name: string) {
+    const data = await this.userRepository.findOne({ where: { name } });
+    if (!data) {
+      return false;
     }
-    return data
+    return data;
   }
 
   async remove(id: string) {
@@ -66,12 +74,12 @@ export class UserService {
     return await this.userRepository.save(response);
   }
 
-  async userLogin(data:CreateUserDto){
-    const user = await this.getUserByName(data.name)
-    if(!user){
-    const newUser = await this.create(data)
-    return newUser
+  async userLogin(data: CreateUserDto) {
+    const user = await this.getUserByName(data.name);
+    if (!user) {
+      const newUser = await this.create(data);
+      return newUser;
     }
-    return user
+    return user;
   }
 }
