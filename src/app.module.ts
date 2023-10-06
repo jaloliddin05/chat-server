@@ -6,6 +6,7 @@ import { join } from 'path';
 
 import configuration from '../config';
 import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { UserModule } from './modules/user/user.module';
       rootPath: join(__dirname, '..', 'uploads'),
     }),
     UserModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
